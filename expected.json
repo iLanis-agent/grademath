@@ -1,0 +1,566 @@
+[
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    80,
+    70
+   ],
+   [
+    50,
+    30,
+    20
+   ]
+  ],
+  "expected": "Weighted average: 83. The plain average of the same scores is 80."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    85
+   ],
+   [
+    10
+   ]
+  ],
+  "expected": "Weighted average: 85. The plain average of the same scores is 85."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    100,
+    0
+   ],
+   [
+    1,
+    1
+   ]
+  ],
+  "expected": "Weighted average: 50. The plain average of the same scores is 50."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    70,
+    90
+   ],
+   [
+    3,
+    1
+   ]
+  ],
+  "expected": "Weighted average: 75. The plain average of the same scores is 80."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    85.5,
+    92.25
+   ],
+   [
+    0.5,
+    1.5
+   ]
+  ],
+  "expected": "Weighted average: 90.56. The plain average of the same scores is 88.88."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    0,
+    0
+   ],
+   [
+    1,
+    2
+   ]
+  ],
+  "expected": "Weighted average: 0. The plain average of the same scores is 0."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    1000
+   ],
+   [
+    1000
+   ]
+  ],
+  "expected": "Weighted average: 1000. The plain average of the same scores is 1000."
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [],
+   []
+  ],
+  "expected": "ERR:need 1 to 20 scores"
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    80
+   ],
+   [
+    50
+   ]
+  ],
+  "expected": "ERR:scores and weights need the same count"
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    80
+   ],
+   [
+    50,
+    0
+   ]
+  ],
+  "expected": "ERR:each weight must be above 0 and at most 1000"
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    -1
+   ],
+   [
+    50,
+    50
+   ]
+  ],
+  "expected": "ERR:each score must be between 0 and 1000"
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    1001
+   ],
+   [
+    50,
+    50
+   ]
+  ],
+  "expected": "ERR:each score must be between 0 and 1000"
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    90,
+    80
+   ],
+   [
+    50,
+    1001
+   ]
+  ],
+  "expected": "ERR:each weight must be above 0 and at most 1000"
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  ],
+  "expected": "ERR:need 1 to 20 scores"
+ },
+ {
+  "fn": "weightedTruth",
+  "args": [
+   [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  ],
+  "expected": "Weighted average: 1. The plain average of the same scores is 1."
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   85,
+   40,
+   90
+  ],
+  "expected": "With 85 on the other 60% and the final worth 40%, a final of 97.5 gives 90."
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   90,
+   20,
+   70
+  ],
+  "expected": "With 90 on the other 80% and the final worth 20%, the target 70 holds even with a final of 0."
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   50,
+   50,
+   100
+  ],
+  "expected": "With 50 on the other 50% and the final worth 50%, a final of 150 gives 100."
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   80,
+   1,
+   80
+  ],
+  "expected": "With 80 on the other 99% and the final worth 1%, a final of 80 gives 80."
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   80,
+   99,
+   80
+  ],
+  "expected": "With 80 on the other 1% and the final worth 99%, a final of 80 gives 80."
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   0,
+   25,
+   60
+  ],
+  "expected": "With 0 on the other 75% and the final worth 25%, a final of 240 gives 60."
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   72.5,
+   30,
+   80
+  ],
+  "expected": "With 72.5 on the other 70% and the final worth 30%, a final of 97.5 gives 80."
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   85,
+   40,
+   85
+  ],
+  "expected": "With 85 on the other 60% and the final worth 40%, a final of 85 gives 85."
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   85,
+   0,
+   90
+  ],
+  "expected": "ERR:final weight must be a whole number from 1 to 99"
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   85,
+   100,
+   90
+  ],
+  "expected": "ERR:final weight must be a whole number from 1 to 99"
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   85,
+   33.5,
+   90
+  ],
+  "expected": "ERR:final weight must be a whole number from 1 to 99"
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   -1,
+   40,
+   90
+  ],
+  "expected": "ERR:current average must be between 0 and 1000"
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   85,
+   40,
+   1001
+  ],
+  "expected": "ERR:target must be between 0 and 1000"
+ },
+ {
+  "fn": "finalTruth",
+  "args": [
+   1001,
+   40,
+   90
+  ],
+  "expected": "ERR:current average must be between 0 and 1000"
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    60,
+    80,
+    90,
+    100
+   ],
+   1
+  ],
+  "expected": "Dropping the lowest score of 4: average goes from 82.5 to 90."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    60,
+    80,
+    90,
+    100
+   ],
+   2
+  ],
+  "expected": "Dropping the lowest 2 scores of 4: average goes from 82.5 to 95."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    70,
+    70
+   ],
+   1
+  ],
+  "expected": "Dropping the lowest score of 2: average goes from 70 to 70."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    100,
+    50,
+    75
+   ],
+   1
+  ],
+  "expected": "Dropping the lowest score of 3: average goes from 75 to 87.5."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    100,
+    50,
+    75
+   ],
+   3
+  ],
+  "expected": "ERR:drop must be a whole number from 1 to one fewer than the scores"
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    100,
+    50,
+    75
+   ],
+   0
+  ],
+  "expected": "ERR:drop must be a whole number from 1 to one fewer than the scores"
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    100
+   ],
+   1
+  ],
+  "expected": "ERR:need 2 to 20 scores"
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    100,
+    50,
+    75
+   ],
+   1.5
+  ],
+  "expected": "ERR:drop must be a whole number from 1 to one fewer than the scores"
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    10.5,
+    20.25,
+    30
+   ],
+   1
+  ],
+  "expected": "Dropping the lowest score of 3: average goes from 20.25 to 25.13."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    100,
+    101,
+    5
+   ],
+   1
+  ],
+  "expected": "Dropping the lowest score of 3: average goes from 68.67 to 100.5."
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   1
+  ],
+  "expected": "ERR:need 2 to 20 scores"
+ },
+ {
+  "fn": "dropTruth",
+  "args": [
+   [
+    5,
+    1,
+    4,
+    2,
+    3
+   ],
+   2
+  ],
+  "expected": "Dropping the lowest 2 scores of 5: average goes from 3 to 4."
+ }
+]
