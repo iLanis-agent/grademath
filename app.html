@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade Math - app</title>
+<style>
+  :root { --accent:#0f7a5a; --ink:#0d2119; --paper:#f1f8f5; --soft:#dcefe7; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, "Times New Roman", serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+  main { max-width:660px; margin:0 auto; }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  body { padding:2rem 1.2rem; }
+  h1 { font-size:1.8rem; color:var(--accent); }
+  .boundary { margin:1rem 0 1.4rem; }
+  .panel { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+  h2 { font-size:1.1rem; margin-bottom:.6rem; }
+  p.note { font-size:.9rem; margin-bottom:.4rem; }
+  label { display:block; font-size:.9rem; margin:.45rem 0 .1rem; }
+  input, select { width:100%; padding:.45rem .55rem; font-size:1rem; border:1px solid #b3d9c8; border-radius:6px; background:#fff; color:var(--ink); }
+  .row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.6rem; }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+  .out { margin-top:.7rem; font-size:.98rem; background:#fff; border:1px dashed #b3d9c8; border-radius:6px; padding:.6rem .7rem; min-height:2.4rem; }
+  .out.err { border-color:#b03030; color:#8a1f1f; }
+  footer { margin-top:1.8rem; font-size:.85rem; color:#4d7a68; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Grade Math</h1>
+  <div class="boundary">
+    <strong>Boundary: arithmetic only</strong>
+    This page works out a weighted average, the final score a target needs, and an average with the lowest scores dropped, from the scores and weights you type. It does not know your course's real weights, rounding or drop rules. Check those in your syllabus.
+  </div>
+
+  <div class="panel">
+    <h2>The weighted truth</h2>
+    <p class="note">Scores and weights, one weight per score, separated by commas.</p>
+    <label for="w-s">Scores</label><input id="w-s" type="text" value="90, 80, 70">
+    <label for="w-w">Weights</label><input id="w-w" type="text" value="50, 30, 20">
+    <div class="out" id="w-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The final-score truth</h2>
+    <p class="note">The final that lands a target, when the rest of the course averages what you enter.</p>
+    <div class="row2">
+      <div><label for="f-c">Average on the rest</label><input id="f-c" type="number" step="any" value="85"></div>
+      <div><label for="f-w">Final's weight (%)</label><input id="f-w" type="number" step="1" value="40"></div>
+      <div><label for="f-t">Target</label><input id="f-t" type="number" step="any" value="90"></div>
+      <div></div>
+    </div>
+    <div class="out" id="f-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The drop truth</h2>
+    <p class="note">The average before and after the lowest scores are dropped.</p>
+    <label for="d-s">Scores</label><input id="d-s" type="text" value="60, 80, 90, 100">
+    <label for="d-n">How many lowest to drop</label><input id="d-n" type="number" step="1" value="1">
+    <div class="out" id="d-out"></div>
+  </div>
+
+  <footer>Grade Math is exact arithmetic over the numbers you enter. <a href="index.html">Why it exists</a>.</footer>
+</main>
+<script src="engine.js"></script>
+<script>
+  const num = (id) => Number(document.getElementById(id).value);
+  const list = (id) => document.getElementById(id).value.split(/[\s,]+/).filter((t) => t !== "").map(Number);
+  function show(id, fn) {
+    const out = document.getElementById(id);
+    try { out.textContent = fn(); out.classList.remove("err"); }
+    catch (e) { out.textContent = e.message; out.classList.add("err"); }
+  }
+  function recalc() {
+    show("w-out", () => weightedTruth(list("w-s"), list("w-w")));
+    show("f-out", () => finalTruth(num("f-c"), num("f-w"), num("f-t")));
+    show("d-out", () => dropTruth(list("d-s"), num("d-n")));
+  }
+  document.querySelectorAll("input, select").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>
